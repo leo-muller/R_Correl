@@ -165,3 +165,17 @@ ggplot(data = plot_data, aes(x = bench, y = HF)) +
  
 ggsave(paste(pathOutput,"Beta.png", sep = ""),width=14,height=14,units="cm")
 
+size_aux = c(0.5,1)
+names(size_aux)=c("Outlier","Normal")
+
+ggplot(data = plot_data %>% filter(substr(plot_data$nome,1,8)=="Ibov 104"), aes(x = 100*bench, y = 100*HF)) + 
+  geom_point(aes(size = size_pts,colour=size_pts))+ 
+  geom_smooth(method = "rlm", se = FALSE,colour = lista_cores[2])+
+  scale_size_manual(name = NULL, values = size_aux)+
+  scale_colour_manual(name = NULL, values = col_aux)+
+  xlab("IBOVESPA")+
+  ylab("Índice de Hedge\nFund ANBIMA")+
+  theme(legend.position = c(0.85, 0.3))
+
+ggsave(paste(pathOutput,"Beta2.png", sep = ""),width=10,height=5,units="cm")
+
