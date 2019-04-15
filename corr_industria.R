@@ -7,7 +7,7 @@ library(RColorBrewer)
 blpConnect()
 
 
-pathOutput = "K://Users/SUFIX/Leo/Git/R_Corr/"
+pathOutput = "K://Users/SUFIX/Leo/Git/R_Correl/"
 pathInput = pathOutput
 
 #===========================================================================
@@ -81,7 +81,7 @@ X = corrplot(M, order = "hclust", addrect = 4)
 png(height=1200, width=1200, pointsize=25, filename=paste(pathOutput, "Cor.png", sep = ""))
 tcol_aux[colnames(X) %in% c("IMA B","IRF-M","Ibov","HF Index","Carry Real")]=lista_cores[8]
 tcol_aux[colnames(X) %in% c("Apollo","SulAmerica Tatico","SulAmerica Endurance","SulAmerica Evolution")]=lista_cores[7]
-corrplot(M, order = "hclust", addrect = 3,tl.col=tcol_aux)
+corrplot(M, order = "hclust", addrect = 4,tl.col=tcol_aux)
 dev.off()
 
 #==================================================
@@ -159,7 +159,7 @@ ggplot(data = plot_data, aes(x = bench, y = HF)) +
   geom_smooth(method = "rlm", se = FALSE,colour = lista_cores[2])+
   scale_size_manual(name = NULL, values = size_aux)+
   scale_colour_manual(name = NULL, values = col_aux)+
-  xlab("Benchmark usado")+
+  xlab("Fator de risco")+
   ylab("Índice de Hedge Fund ANBIMA")+
   theme(legend.position = c(0.89, 0.09))
  
